@@ -1,12 +1,18 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import Button from "./components/elements/Button";
 
 import NoteCreate from "./components/NoteCreate";
 import NotepadTitle from "./components/NotepadTitle";
 import NoteRender from "./components/NoteRender";
+import Notepad from "./components/Notepad";
+
+import GithubRest from "./components/GithubRest";
 
 function App() {
+
+  const pad = Notepad();
+  
 
   return (
     <div className="container mx-auto">
@@ -16,8 +22,8 @@ function App() {
           <NotepadTitle/>
           <div>
             <div className="flex gap-2">
-            <Button variant="save">Save</Button>
-            <Button variant="delete">Delete</Button>
+            <Button onClick={pad.createNotepad} variant="save">Save</Button>
+            <Button onClick={pad.deleteNotepad} variant="delete">Delete</Button>
             </div>
           </div>
         </div>
