@@ -11,14 +11,16 @@ import NoteRender from "./components/NoteRender";
 function App() {
 
   return (
-    <div className="App">
-      <h1>Notepad Application</h1>
-      <div>
-        <div>
+    <div className="container mx-auto">
+      <h1 className="px-3">Notepad Application</h1>
+      <div className="bg-white p-3 border rounded">
+        <div className="flex flex-wrap justify-between align-bottom">
           <NotepadTitle/>
           <div>
-            <Button>Save</Button>
-            <Button>Delete</Button>
+            <div className="flex gap-2">
+            <Button variant="save">Save</Button>
+            <Button variant="delete">Delete</Button>
+            </div>
           </div>
         </div>
         <h2>My Notes</h2>
