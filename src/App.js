@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import githubToken from "./githubtoken";
-
 import Button from "./components/elements/Button";
 
 import NoteCreate from "./components/NoteCreate";
