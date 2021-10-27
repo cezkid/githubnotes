@@ -22,7 +22,7 @@ function App() {
           <NotepadTitle/>
           <div>
             <div className="flex gap-2">
-            <Button onClick={pad.createNotepad} variant="save">Save</Button>
+            <Button onClick={pad.updateNotepad} variant="save">Save</Button>
             <Button onClick={pad.deleteNotepad} variant="delete">Delete</Button>
             </div>
           </div>
