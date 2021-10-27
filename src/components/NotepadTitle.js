@@ -6,8 +6,7 @@ const NotepadTitle = ()=> {
 
   return(
     <form>
-      <Input/>
-      <Button>Add</Button>
+      <Input label="Notepad Title" placeholder="My notepad title..."/>
     </form>
   )
 }
