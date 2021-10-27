@@ -3,9 +3,20 @@ import GithubRest from "./GithubRest";
 
 const Notepad = ()=> {
 
-
-  const testData = {
-    description: "Nopepad Title",
+  let date = ()=>{return new Date().toLocaleString()}
+  let testData = {
+    description: `Nopepad @ ${date()}`,
+    files: {
+      "Note 1": {
+        content:"Note 1 Content"
+      },
+      "Note 2": {
+        content:"Note 2 Content"
+      }
+    }
+  }
+  let newData = {
+    description: `New Nopepad @ ${date()}`,
     files: {
       "Note 1": {
         content:"Note 1 Content"
@@ -17,7 +28,7 @@ const Notepad = ()=> {
   }
 
   const [action, setAction] = useState('');
-  const [data, setData] = useState({});
+  const [data, setData] = useState(null);
   const [gistID, setGistID] = useState('');
 
 console.log(gistID);
@@ -25,21 +36,30 @@ console.log(gistID);
   const git = GithubRest(action, data, gistID, setGistID);
 
   const createNotepad = ()=>{
+    setData(newData);
     setAction("POST");
-    setData(testData);
+    console.log("create new")
+
   }
   const readNotepad = ()=> {
   
 
   }
   const updateNotepad = ()=> {
-    setAction("PATCH");
-    setData(testData);
+    
+    if (data){
+      setData({gist_id:gistID, ...testData});
+      setAction("PATCH");
+      console.log("update")
+    } else {
+      createNotepad()
+    }
 
   }
   const deleteNotepad = ()=> {
     setAction("DELETE")
-    setData();
+    setData(null);
+    setGistID(null);
   }
 
   return { createNotepad, readNotepad, updateNotepad, deleteNotepad }
