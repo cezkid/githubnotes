@@ -2,53 +2,33 @@ import React, { useState, useEffect } from "react";
 
 import githubToken from "./githubtoken";
 
+import Button from "./components/elements/Button";
+
+import NoteCreate from "./components/NoteCreate";
+import NotepadTitle from "./components/NotepadTitle";
+import NoteRender from "./components/NoteRender";
+
 function App() {
-
-  const [data, setData] = useState(null);
-
-
-  const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
-
-  useEffect(()=> {
-    const requestOptions ={
-      method: 'POST',
-      headers: {
-        Accept: 'application/vnd.github.v3+json',
-        Authorization: `token ${githubToken}`
-      },
-      body: JSON.stringify({
-        description: "Nopepad Title",
-        files: {
-          "Note 1": {
-            content:"Note 1 Content"
-          },
-          "Note 2": {
-            content:"Note 2 Content"
-          }
-        }
-      })
-    }
-    fetch('https://api.github.com/gists',requestOptions)
-      .then(response => response.json() )
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result);
-          console.log(result)
-      },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-          console.log(error)
-        }
-      )
-  }, []);
 
   return (
     <div className="App">
       <h1>Notepad Application</h1>
+      <div>
+        <div>
+          <NotepadTitle/>
+          <div>
+            <Button>Save</Button>
+            <Button>Delete</Button>
+          </div>
+        </div>
+        <h2>My Notes</h2>
+        <NoteCreate/>
+
+        <div>
+          <NoteRender/>
+        </div>
+      </div>
+
     </div>
   );
 }
