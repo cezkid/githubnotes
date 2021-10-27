@@ -1,3 +1,6 @@
+//File not to be used. only for reference
+
+//Response when GET
 [
     {
         "url": "https://api.github.com/gists/35766c65ae94904d2899c54ad72eb7da",
@@ -209,3 +212,97 @@
         "truncated": false
     }
 ]
+
+//reponse when PUT
+
+{
+    "url": "https://api.github.com/gists/5e080359d08fdc639126be5786ec63a7",
+    "forks_url": "https://api.github.com/gists/5e080359d08fdc639126be5786ec63a7/forks",
+    "commits_url": "https://api.github.com/gists/5e080359d08fdc639126be5786ec63a7/commits",
+    "id": "5e080359d08fdc639126be5786ec63a7",
+    "node_id": "G_kwDOAAYNHtoAIDVlMDgwMzU5ZDA4ZmRjNjM5MTI2YmU1Nzg2ZWM2M2E3",
+    "git_pull_url": "https://gist.github.com/5e080359d08fdc639126be5786ec63a7.git",
+    "git_push_url": "https://gist.github.com/5e080359d08fdc639126be5786ec63a7.git",
+    "html_url": "https://gist.github.com/5e080359d08fdc639126be5786ec63a7",
+    "files": {
+        "Note 1": {
+            "filename": "Note 1",
+            "type": "text/plain",
+            "language": null,
+            "raw_url": "https://gist.githubusercontent.com/cezkid/5e080359d08fdc639126be5786ec63a7/raw/62babec9424599acb10690d10bd23c210aa8f510/Note%201",
+            "size": 14,
+            "truncated": false,
+            "content": "Note 1 Content"
+        },
+        "Note 2": {
+            "filename": "Note 2",
+            "type": "text/plain",
+            "language": null,
+            "raw_url": "https://gist.githubusercontent.com/cezkid/5e080359d08fdc639126be5786ec63a7/raw/17229f9cb610f5adbb6822c163a2eb1987326a97/Note%202",
+            "size": 14,
+            "truncated": false,
+            "content": "Note 2 Content"
+        }
+    },
+    "public": false,
+    "created_at": "2021-10-27T18:51:47Z",
+    "updated_at": "2021-10-27T18:51:47Z",
+    "description": "Nopepad Title",
+    "comments": 0,
+    "user": null,
+    "comments_url": "https://api.github.com/gists/5e080359d08fdc639126be5786ec63a7/comments",
+    "owner": {
+        "login": "cezkid",
+        "id": 396574,
+        "node_id": "MDQ6VXNlcjM5NjU3NA==",
+        "avatar_url": "https://avatars.githubusercontent.com/u/396574?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/cezkid",
+        "html_url": "https://github.com/cezkid",
+        "followers_url": "https://api.github.com/users/cezkid/followers",
+        "following_url": "https://api.github.com/users/cezkid/following{/other_user}",
+        "gists_url": "https://api.github.com/users/cezkid/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/cezkid/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/cezkid/subscriptions",
+        "organizations_url": "https://api.github.com/users/cezkid/orgs",
+        "repos_url": "https://api.github.com/users/cezkid/repos",
+        "events_url": "https://api.github.com/users/cezkid/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/cezkid/received_events",
+        "type": "User",
+        "site_admin": false
+    },
+    "forks": [],
+    "history": [
+        {
+            "user": {
+                "login": "cezkid",
+                "id": 396574,
+                "node_id": "MDQ6VXNlcjM5NjU3NA==",
+                "avatar_url": "https://avatars.githubusercontent.com/u/396574?v=4",
+                "gravatar_id": "",
+                "url": "https://api.github.com/users/cezkid",
+                "html_url": "https://github.com/cezkid",
+                "followers_url": "https://api.github.com/users/cezkid/followers",
+                "following_url": "https://api.github.com/users/cezkid/following{/other_user}",
+                "gists_url": "https://api.github.com/users/cezkid/gists{/gist_id}",
+                "starred_url": "https://api.github.com/users/cezkid/starred{/owner}{/repo}",
+                "subscriptions_url": "https://api.github.com/users/cezkid/subscriptions",
+                "organizations_url": "https://api.github.com/users/cezkid/orgs",
+                "repos_url": "https://api.github.com/users/cezkid/repos",
+                "events_url": "https://api.github.com/users/cezkid/events{/privacy}",
+                "received_events_url": "https://api.github.com/users/cezkid/received_events",
+                "type": "User",
+                "site_admin": false
+            },
+            "version": "49655d077c14e12a431c783636fb3657138b09f7",
+            "committed_at": "2021-10-27T18:51:47Z",
+            "change_status": {
+                "total": 2,
+                "additions": 2,
+                "deletions": 0
+            },
+            "url": "https://api.github.com/gists/5e080359d08fdc639126be5786ec63a7/49655d077c14e12a431c783636fb3657138b09f7"
+        }
+    ],
+    "truncated": false
+}
