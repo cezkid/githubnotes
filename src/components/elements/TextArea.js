@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 
-const TextArea = ({ children, onClick, ...props })=> {
+const TextArea = ({ placeholder, ...props })=> {
   
   return(
     <>
-    <label></label>
-    <textarea className="block rounded border"/>
+      <label></label>
+      <textarea
+          placeholder={placeholder}
+          rows="4"
+          maxLength="1000"
+          className="p-2 block rounded border"
+      />
     </>
   )
 }
