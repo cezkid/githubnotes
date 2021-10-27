@@ -1,3 +1,54 @@
+/* import tailwind */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Set base styles */
+html {
+  font-family: Arial, sans-serif;
+  background-color: #eee;
+  color:#333;
+}
+
+input,textarea{
+  display:block;
+  width:100%;  
+  max-width:512px;
+}
+
+input::placeholder, textarea::placeholder {
+  color:#CCC;
+}
+
+form label {
+  font-size:12px;
+}
+
+button {
+  font-size:14px;
+}
+
+/* Main Title */
+h1 {
+  font-size:24px;
+}
+
+/* My Notes */
+h2 {
+  font-size: 18px;
+}
+
+/* make the .border class #ccc by default */
+.border{
+  border-color: #ccc;
+}
+
+.container {
+  max-width: 1024px;
+  min-width: 320px;
+}
+
+.flex-fields {
+  flex-basis: 512px;
+}
