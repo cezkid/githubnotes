@@ -5,9 +5,7 @@ const TextArea = ({ children, onClick, ...props })=> {
   return(
     <>
     <label></label>
-    <textarea>
-      {children || '' }
-    </textarea>
+    <textarea/>
     </>
   )
 }
