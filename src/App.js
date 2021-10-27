@@ -13,13 +13,24 @@ function App() {
 
   useEffect(()=> {
     const requestOptions ={
-      method: 'GET',
+      method: 'POST',
       headers: {
         Accept: 'application/vnd.github.v3+json',
         Authorization: `token ${githubToken}`
-      }
+      },
+      body: JSON.stringify({
+        description: "Nopepad Title",
+        files: {
+          "Note 1": {
+            content:"Note 1 Content"
+          },
+          "Note 2": {
+            content:"Note 2 Content"
+          }
+        }
+      })
     }
-    fetch('https://api.github.com/users/cezkid/gists',requestOptions)
+    fetch('https://api.github.com/gists',requestOptions)
       .then(response => response.json() )
       .then(
         (result) => {
@@ -34,8 +45,6 @@ function App() {
         }
       )
   }, []);
-
-  data && console.log(data);
 
   return (
     <div className="App">
