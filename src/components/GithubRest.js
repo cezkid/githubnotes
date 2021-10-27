@@ -8,7 +8,8 @@ const GithubRest = (method, data, gistID, setGistID)=> {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
-  const returnURL = ()=> {
+  useEffect(()=> {
+    const restPath = ()=> {
       switch (method) {
         //create gist
         case 'POST':
@@ -25,33 +26,32 @@ const GithubRest = (method, data, gistID, setGistID)=> {
         default: return null;
       }
     }
-  console.log(returnURL())
+  console.log(restPath())
 
-  useEffect(()=> {
-    const requestOptions = {
-      method: method,
-      headers: {
-        Accept: 'application/vnd.github.v3+json',
-        Authorization: `token ${githubToken}`
-      },
-      body: JSON.stringify(data)
-    }
+  const requestOptions = {
+    method: method,
+    headers: {
+      Accept: 'application/vnd.github.v3+json',
+      Authorization: `token ${githubToken}`
+    },
+    body: JSON.stringify(data)
+  }
 
 
-    fetch(`https://api.github.com/${returnURL()}`,requestOptions)
-      .then(response => response.json() )
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setGistID(result.id);
-          console.log(result)
-      },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-          console.log(error)
-        }
-      )
+  fetch(`https://api.github.com/${restPath()}`,requestOptions)
+    .then(response => response.json() )
+    .then(
+      (result) => {
+        setIsLoaded(true);
+        !gistID && setGistID(result.id);
+        console.log(result)
+    },
+      (error) => {
+        setIsLoaded(true);
+        setError(error);
+        console.log(error)
+      }
+    )
   }, [method]);
 
   return (
