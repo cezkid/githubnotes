@@ -6,10 +6,12 @@ import TextArea from "./elements/TextArea";
 const NoteCreate = ()=> {
 
   return(
-    <form>
-      <Input/>
-      <TextArea/>
-      <Button>Add</Button>
+    <form className="flex flex-col gap-1">
+      <Input placeholder="Enter note title"/>
+      <TextArea placeholder="Enter note..."/>
+      <div>
+      <Button variant="add">Add</Button>
+      </div>
     </form>
   )
 }
