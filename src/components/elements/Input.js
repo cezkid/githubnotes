@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 
-const Input = ()=> {
+var classNames = require('classnames');
+
+const Input = ({label, placeholder})=> {
 
   return(
     <>
-    <label></label>
-    <input/>
+    <label>{label}</label>
+    <input
+      placeholder={placeholder}
+      maxLength="255"
+      className="p-2 rounded border"/>
     </>
   )
 }
