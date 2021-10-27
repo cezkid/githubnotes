@@ -5,7 +5,7 @@ const TextArea = ({ children, onClick, ...props })=> {
   return(
     <>
     <label></label>
-    <textarea/>
+    <textarea className="block rounded border"/>
     </>
   )
 }
