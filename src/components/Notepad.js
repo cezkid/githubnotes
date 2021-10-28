@@ -49,7 +49,7 @@ const Notepad = (title, notes, resetValues)=> {
   /**
    * Initialize github REST request helper
    */
-  const rest = GithubRest(action, gistObj, gistID, setGistID);
+  const rest = GithubRest(action, gistObj, gistID, setGistID, resetValues);
 
 
   const createNotepad = ()=>{
@@ -74,8 +74,9 @@ const Notepad = (title, notes, resetValues)=> {
     if (title && notes.length){
       /**
        * If gistId exist, it means we were able to save to github and can update
+       * Also check if the last action was "DELETE" 
        */
-      if (gistID) {
+      if (gistID && action !== "DELETE") {
         genGistObj();
         setAction("PATCH");
       }
@@ -83,15 +84,27 @@ const Notepad = (title, notes, resetValues)=> {
         createNotepad();
       }
     }
-    else{
-      console.log('please fill the forms')
+    else if(!title){
+      console.log('please add a notepad Title')
+    }else{
+      console.log('please create a note')
     }
 
   }
+  /**
+   * This function has two purposes:
+   * - delete from github if gistID stored
+   * - Clear Values
+   */
   const deleteNotepad = ()=> {
-    gistID && setAction("DELETE")
+
+    if (gistID) {
+      setGistObj({
+        gist_id:gistID,
+      });
+      setAction("DELETE");
+    }
     resetValues()
-    setGistID(null);
   }
 
   return { createNotepad, readNotepad, updateNotepad, deleteNotepad }
