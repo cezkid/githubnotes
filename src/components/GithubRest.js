@@ -1,8 +1,6 @@
 
 import { useState, useEffect } from "react";
 
-import githubToken from "../githubtoken";
-
 /**
  * Function to aid with connecting to Github api
  * @param {Object} data - github gist object that gets stringified
@@ -35,7 +33,7 @@ const GithubRest = (gistID, setGistID)=> {
     method: method,
     headers: {
       Accept: 'application/vnd.github.v3+json',
-      Authorization: `token ${githubToken}`
+      Authorization: `token ${process.env.REACT_APP_GITHUB_TOKEN}`
     },
     ...body }
 
