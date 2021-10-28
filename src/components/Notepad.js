@@ -49,7 +49,7 @@ const Notepad = (title, notes, resetValues)=> {
   /**
    * Initialize github REST request helper
    */
-  const rest = GithubRest(action, gistObj, gistID, setGistID, resetValues);
+  const rest = GithubRest(action, gistObj, gistID, setGistID);
 
 
   const createNotepad = ()=>{

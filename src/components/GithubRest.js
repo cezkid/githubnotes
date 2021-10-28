@@ -3,11 +3,14 @@ import { useState, useEffect } from "react";
 
 import githubToken from "../githubtoken";
 
-const GithubRest = (method, data, gistID, setGistID, resetValues)=> {
+const GithubRest = (method, data, gistID, setGistID)=> {
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  /**
+   * Stores the routes matched to their method
+   */
   const routes = { 
     'POST':'gists',
     'PATCH':`gists/${gistID}`,
