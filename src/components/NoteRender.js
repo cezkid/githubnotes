@@ -3,12 +3,19 @@ import Button from "./elements/Button";
 
 import Note from "./Note";
 
+
+/**
+ * Component to render individual note and add a delete button
+ * When field is edited, it also updates the corresponding note in the Notes array
+ */
 const NoteRender = ({ note, notes, setNotes })=> {
 
   const [title,setTitle] = useState(note.title)
   const [content,setContent] = useState(note.content)
 
-  //get the index of note and adjust title and content
+  /**
+   * get the index of note and adjust title and content
+   */
   useEffect(() => {
 
     let noteIndex = notes.findIndex(n => n.id === note.id);
