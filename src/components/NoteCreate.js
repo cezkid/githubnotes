@@ -16,7 +16,7 @@ const NoteCreate = ({notes,setNotes})=> {
   const lastId =  notes.reduce((max, note) => (Number(note.id) > max ? Number(note.id): max), 0);
 
   return(
-    <form className="flex flex-col gap-1">
+    <form className="flex flex-col gap-2 py-3">
       <Note title={title} content={content} setTitle={setTitle} setContent={setContent}/>
       <div>
       <Button
