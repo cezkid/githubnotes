@@ -53,8 +53,8 @@ const GithubRest = (gistID, setGistID)=> {
       (error) => {
         setIsLoaded(true);
         setError(error);
-        (method === 'DELETE') && console.log(`Deleted! no response from github see below:`);
         console.log(error);
+        (method === 'DELETE') && console.log(`Deleted! no response from github see above`);
       }
     )
   }
