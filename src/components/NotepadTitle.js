@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";
 import Input from "./elements/Input";
-import Button from "./elements/Button";
 
-const NotepadTitle = ()=> {
+const NotepadTitle = ({title, titleFunc})=> {
 
   return(
     <form>
-      <Input label="Notepad Title" placeholder="My notepad title..."/>
+      <Input
+        label="Notepad Title"
+        placeholder="My notepad title..."
+        value={title}
+        onChange={(e)=>{ titleFunc(e.target.value); console.log(e.target.value) }}
+        />
     </form>
   )
 }
