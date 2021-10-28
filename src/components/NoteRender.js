@@ -24,7 +24,7 @@ const NoteRender = ({ note, notes, setNotes })=> {
     
   }, [title,content])
   return(
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2 py-2">
       <div className="flex fields-width flex-col gap-2">
         <Note title={title} content={content} setTitle={setTitle} setContent={setContent}/>
       </div>
