@@ -49,6 +49,6 @@ h2 {
   min-width: 320px;
 }
 
-.flex-fields {
-  flex-basis: 512px;
+.fields-width {
+  width: 512px;
 }
