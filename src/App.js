@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import Button from "./components/elements/Button";
 
@@ -6,7 +6,6 @@ import NoteCreate from "./components/NoteCreate";
 import NotepadTitle from "./components/NotepadTitle";
 import NoteRender from "./components/NoteRender";
 import Notepad from "./components/Notepad";
-import Note from "./components/Note";
 
 function App() {
 
@@ -39,10 +38,14 @@ function App() {
    */
   return (
     <div className="container mx-auto">
+
       <h1 className="px-3">Notepad Application</h1>
+
       <div className="bg-white p-3 border rounded">
         <div className="flex flex-wrap justify-between align-bottom">
+
           <NotepadTitle title={title} titleFunc={setTitle}/>
+
           <div>
             <div className="flex gap-2">
             <Button onClick={pad.updateNotepad} variant="save">Save</Button>
@@ -51,13 +54,19 @@ function App() {
           </div>
         </div>
         <h2>My Notes</h2>
+
         <NoteCreate notes={notes} setNotes={setNotes}/>
 
         <div>
           {
+            /**
+             * Map notes array to display all notes. Use the NoteRender Component
+             */
             notes.map(
               (note)=> (
+
                 <NoteRender key={note.id} note={note} notes={notes} setNotes={setNotes}/>
+                
               )
             )
           }
