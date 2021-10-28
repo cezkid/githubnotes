@@ -23,9 +23,6 @@ const Notepad = (title, notes, resetValues)=> {
   //   }
   // }
 
-
-  let [gistObj, setGistObj] = useState({})
-
   const genGistObj = ()=> {
     /**
      * create object for the "files" object required for gist
@@ -38,18 +35,13 @@ const Notepad = (title, notes, resetValues)=> {
     /**
      * Formulate final gist object
      */
-    setGistObj({
+     return ({
       gist_id:gistID,
       description:title,
       files: gistFilesObj
-    });
+    })
 
   }
-
-  /**
-   * Keep track of save and delete actions
-   */
-  const [action, setAction] = useState('');
 
   /**
    * gist ID is received from github when creating new gist
@@ -57,12 +49,10 @@ const Notepad = (title, notes, resetValues)=> {
    */
   const [gistID, setGistID] = useState('');
 
-
   /**
    * Initialize github REST request helper
    */
-  const rest = GithubRest(action, gistObj, gistID, setGistID);
-
+  const github = GithubRest(gistID, setGistID);
 
   /**
    * Function creates notepad if title and notes array available
@@ -72,8 +62,7 @@ const Notepad = (title, notes, resetValues)=> {
      * Detect if title and note are filled
      */
     if (title && notes.length){
-      genGistObj()
-      setAction("POST");
+      github.call("POST", genGistObj());
     }else{
       console.log('please fill the forms')
     }
@@ -94,9 +83,9 @@ const Notepad = (title, notes, resetValues)=> {
        * If gistId exist, it means we were able to save to github and can update
        * Also check if the last action was "DELETE" 
        */
-      if (gistID && action !== "DELETE") {
+      if (gistID) {
         genGistObj();
-        setAction("PATCH");
+        github.call("PATCH", genGistObj());
       }
       else {
         createNotepad();
@@ -117,10 +106,8 @@ const Notepad = (title, notes, resetValues)=> {
   const deleteNotepad = ()=> {
 
     if (gistID) {
-      setGistObj({
-        gist_id:gistID,
-      });
-      setAction("DELETE");
+      github.call("DELETE");
+
     }
     resetValues()
   }
