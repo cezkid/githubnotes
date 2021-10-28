@@ -1,30 +1,23 @@
 import { useState, useEffect } from "react";
 import Button from "./elements/Button";
-import Input from "./elements/Input";
-import TextArea from "./elements/TextArea";
+import Note from "./Note";
 
-const NoteCreate = ({notes,notesFunc})=> {
+const NoteCreate = ({notes,setNotes})=> {
 
   const [title,setTitle] = useState('')
   const [content,setContent] = useState('')
 
   return(
     <form className="flex flex-col gap-1">
-      <Input
-        placeholder="Enter note title"
-        value={title}
-        onChange={(e)=>{setTitle(e.target.value)}}
-      />
-
-      <TextArea
-        placeholder="Enter note..."
-        value={content}
-        onChange={(e)=>{setContent(e.target.value)}}
-      />
+      <Note setTitle={setTitle} setContent={setContent}/>
       <div>
       <Button
         variant="add"
-        onClick={ (e)=>{ e.preventDefault(); notesFunc({...notes,[title]:{content:content}})}  }
+        onClick={ (e)=>{
+          e.preventDefault(); 
+          setNotes([...notes,{title:title,content:content}])
+          }
+        }
         >Add</Button>
       </div>
     </form>
