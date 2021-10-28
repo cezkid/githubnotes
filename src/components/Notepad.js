@@ -1,6 +1,13 @@
 import { useState, useEffect } from "react";
 import GithubRest from "./GithubRest";
 
+/**
+ * Notepad function to handle action on notepad
+ * @param {string} title - main app title
+ * @param {array} notes - notes array from main app
+ * @param {function} resetValues - Function to reset values
+ * @returns 
+ */
 const Notepad = (title, notes, resetValues)=> {
 
   // Reference Code / Test Array
@@ -15,17 +22,22 @@ const Notepad = (title, notes, resetValues)=> {
   //     }
   //   }
   // }
+
+
   let [gistObj, setGistObj] = useState({})
 
   const genGistObj = ()=> {
-    /***
-     * Remap notes array to required gist object format
+    /**
+     * create object for the "files" object required for gist
      */
     let gistFilesObj = {}
     notes.map(
       (note)=> gistFilesObj = {...gistFilesObj, [note.title]: {content:note.content} }
     );
 
+    /**
+     * Formulate final gist object
+     */
     setGistObj({
       gist_id:gistID,
       description:title,
@@ -52,6 +64,9 @@ const Notepad = (title, notes, resetValues)=> {
   const rest = GithubRest(action, gistObj, gistID, setGistID);
 
 
+  /**
+   * Function creates notepad if title and notes array available
+   */
   const createNotepad = ()=>{
     /**
      * Detect if title and note are filled
@@ -67,6 +82,9 @@ const Notepad = (title, notes, resetValues)=> {
   
 
   }
+  /**
+   * Update if data present, if not use createNotepad()
+   */
   const updateNotepad = ()=> {
     /**
      * Detect if title and note are filled
