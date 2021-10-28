@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";
 
-const TextArea = ({ placeholder, ...props })=> {
+const TextArea = ({ placeholder, onChange, ...props })=> {
   
   return(
     <>
@@ -10,6 +10,7 @@ const TextArea = ({ placeholder, ...props })=> {
           rows="4"
           maxLength="1000"
           className="p-2 block rounded border"
+          onChange= {onChange}
       />
     </>
   )
