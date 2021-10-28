@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import GithubRest from "./GithubRest";
 
-const Notepad = (data, setData, blankData)=> {
+const Notepad = (title, notes, resetValues)=> {
 
-  //let date = ()=>{return new Date().toLocaleString()}
+  // Reference Code / Test Array
   // let testData = {
   //   description: `Nopepad @ ${date()}`,
   //   files: {
@@ -15,36 +15,71 @@ const Notepad = (data, setData, blankData)=> {
   //     }
   //   }
   // }
+  let [gistObj, setGistObj] = useState({})
 
+  const genGistObj = ()=> {
+    /***
+     * Remap notes array to required gist object format
+     */
+    let gistFilesObj = {}
+    notes.map(
+      (note)=> gistFilesObj = {...gistFilesObj, [note.title]: {content:note.content} }
+    );
 
+    setGistObj({
+      gist_id:gistID,
+      description:title,
+      files: gistFilesObj
+    });
+
+  }
+
+  /**
+   * Keep track of save and delete actions
+   */
   const [action, setAction] = useState('');
 
+  /**
+   * gist ID is received from github when creating new gist
+   * once received we can update and delete using the gist ID
+   */
   const [gistID, setGistID] = useState('');
 
-  console.log(gistID);
 
-  const newGithubRest = GithubRest(action, data, gistID, setGistID);
+  /**
+   * Initialize github REST request helper
+   */
+  const rest = GithubRest(action, gistObj, gistID, setGistID);
+
 
   const createNotepad = ()=>{
-    if (data.title && data.files){
-      setData(data);
+    /**
+     * Detect if title and note are filled
+     */
+    if (title && notes.length){
+      genGistObj()
       setAction("POST");
     }else{
       console.log('please fill the forms')
     }
-    //console.log("create new clicked")
   }
   const readNotepad = ()=> {
   
 
   }
   const updateNotepad = ()=> {
-    
-    if (data.title && data.files){
+    /**
+     * Detect if title and note are filled
+     */
+    if (title && notes.length){
+      /**
+       * If gistId exist, it means we were able to save to github and can update
+       */
       if (gistID) {
-        setData({gist_id:gistID, ...data});
+        genGistObj();
         setAction("PATCH");
-      }else{
+      }
+      else {
         createNotepad();
       }
     }
@@ -54,8 +89,8 @@ const Notepad = (data, setData, blankData)=> {
 
   }
   const deleteNotepad = ()=> {
-    setAction("DELETE")
-    setData(blankData);
+    gistID && setAction("DELETE")
+    resetValues()
     setGistID(null);
   }
 
