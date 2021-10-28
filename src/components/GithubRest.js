@@ -3,30 +3,18 @@ import { useState, useEffect } from "react";
 
 import githubToken from "../githubtoken";
 
-const GithubRest = (method, data, gistID, setGistID)=> {
+const GithubRest = (method, data, gistID, setGistID, resetValues)=> {
 
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  const routes = { 
+    'POST':'gists',
+    'PATCH':`gists/${gistID}`,
+    'DELETE':`gists/${gistID}`
+  }
+
   useEffect(()=> {
-    const restPath = ()=> {
-      switch (method) {
-        //create gist
-        case 'POST':
-          return 'gists';
-          break;
-        //update gist
-        case 'PATCH':
-          return `gists/${gistID}`;
-          break;
-        //delete gist
-        case 'DELETE':
-          return `gists/${gistID}`;
-          break;
-        default: return null;
-      }
-    }
-  console.log(restPath())
 
   const requestOptions = {
     method: method,
@@ -38,13 +26,13 @@ const GithubRest = (method, data, gistID, setGistID)=> {
   }
 
   method &&
-  fetch(`https://api.github.com/${restPath()}`,requestOptions)
+  fetch(`https://api.github.com/${routes[method]}`,requestOptions)
     .then(response => response.json() )
     .then(
       (result) => {
         setIsLoaded(true);
-        !gistID && setGistID(result.id);
-        console.log(result)
+        console.log(result);
+        (method === 'POST' || 'PATCH') && setGistID(result.id)
     },
       (error) => {
         setIsLoaded(true);
