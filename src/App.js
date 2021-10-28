@@ -6,32 +6,37 @@ import NoteCreate from "./components/NoteCreate";
 import NotepadTitle from "./components/NotepadTitle";
 import NoteRender from "./components/NoteRender";
 import Notepad from "./components/Notepad";
-
-import GithubRest from "./components/GithubRest";
+import Note from "./components/Note";
 
 function App() {
 
-  const blankData= {
-    description: ``,
-    files: {}
+  /**
+   * Track notepad title
+   */
+  const [title, setTitle] = useState('');
+
+  /**
+   * track notes array
+   */
+  const [notes, setNotes] = useState([]);
+
+  /**
+   * Helper function resets title and notes values
+   * @function
+   */
+  const resetValues = ()=> {
+    setTitle('');
+    setNotes([]);
   }
 
-  const [title, setTitle] = useState('');
-  const [notes, setNotes] = useState({});
+  /**
+   * Intitialize Notepad
+   */
+  const pad = Notepad(title, notes, resetValues);
 
-  const [githubObj, setGithubObj] = useState();
-
-  //combining both states into one
-  useEffect(()=>{
-    setGithubObj({description:title, files:notes})
-  },[title,notes]
-  )
-
-  console.log(githubObj);
-
-  const pad = Notepad(githubObj, setGithubObj, blankData);
-  
-
+  /**
+   * Render Form
+   */
   return (
     <div className="container mx-auto">
       <h1 className="px-3">Notepad Application</h1>
@@ -46,10 +51,16 @@ function App() {
           </div>
         </div>
         <h2>My Notes</h2>
-        <NoteCreate/>
+        <NoteCreate notes={notes} setNotes={setNotes}/>
 
         <div>
-          <NoteRender/>
+          {
+            notes.map(
+              (note)=> (
+                <NoteRender key={note.id} note={note} notes={notes} setNotes={setNotes}/>
+              )
+            )
+          }
         </div>
       </div>
 
