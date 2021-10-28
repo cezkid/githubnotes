@@ -31,7 +31,7 @@ function App() {
       <h1 className="px-3">Notepad Application</h1>
       <div className="bg-white p-3 border rounded">
         <div className="flex flex-wrap justify-between align-bottom">
-          <NotepadTitle/>
+          <NotepadTitle titleFunc={setTitle}/>
           <div>
             <div className="flex gap-2">
             <Button onClick={pad.updateNotepad} variant="save">Save</Button>
