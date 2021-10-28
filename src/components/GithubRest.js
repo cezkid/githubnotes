@@ -3,6 +3,13 @@ import { useState, useEffect } from "react";
 
 import githubToken from "../githubtoken";
 
+/**
+ * Function to aid with connecting to Github api
+ * @param {string} method - 'POST, PATCH, DELETE'
+ * @param {Object} data - github gist object that gets stringified
+ * @param {string} gistID - gist id state variable
+ * @param {function} setGistID - gist id state function
+ */
 const GithubRest = (method, data, gistID, setGistID)=> {
 
   const [error, setError] = useState(null);
