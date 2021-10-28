@@ -11,7 +11,19 @@ import GithubRest from "./components/GithubRest";
 
 function App() {
 
-  const pad = Notepad();
+  const blankData= {
+    description: ``,
+    files: {}
+  }
+
+  const [title, setTitle] = useState('');
+  const [notes, setNotes] = useState([]);
+
+  const [githubObject, setGithubObject] = useState({description:title, files:notes});
+
+
+
+  const pad = Notepad(githubObject, setGithubObject, blankData);
   
 
   return (
