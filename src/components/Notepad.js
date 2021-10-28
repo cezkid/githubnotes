@@ -1,45 +1,38 @@
 import React, { useState, useEffect } from "react";
 import GithubRest from "./GithubRest";
 
-const Notepad = ()=> {
+const Notepad = (data, setData, blankData)=> {
 
-  let date = ()=>{return new Date().toLocaleString()}
-  let testData = {
-    description: `Nopepad @ ${date()}`,
-    files: {
-      "Note 1": {
-        content:"Note 1 Content"
-      },
-      "Note 2": {
-        content:"Note 2 Content"
-      }
-    }
-  }
-  let newData = {
-    description: `New Nopepad @ ${date()}`,
-    files: {
-      "Note 1": {
-        content:"Note 1 Content"
-      },
-      "Note 2": {
-        content:"Note 2 Content"
-      }
-    }
-  }
+  //let date = ()=>{return new Date().toLocaleString()}
+  // let testData = {
+  //   description: `Nopepad @ ${date()}`,
+  //   files: {
+  //     "Note 1": {
+  //       content:"Note 1 Content"
+  //     },
+  //     "Note 2": {
+  //       content:"Note 2 Content"
+  //     }
+  //   }
+  // }
+
 
   const [action, setAction] = useState('');
-  const [data, setData] = useState(null);
+
   const [gistID, setGistID] = useState('');
 
-console.log(gistID);
+  console.log(gistID);
 
-  const git = GithubRest(action, data, gistID, setGistID);
+  const newGithubRest = GithubRest(action, data, gistID, setGistID);
 
   const createNotepad = ()=>{
-    setData(newData);
-    setAction("POST");
-    console.log("create new")
-
+    if (data.title && data.files){
+      setData(data);
+      setAction("POST");
+    }else{
+      console.log('please fill the forms')
+    }
+    //console.log("create new clicked")
   }
   const readNotepad = ()=> {
   
@@ -47,18 +40,22 @@ console.log(gistID);
   }
   const updateNotepad = ()=> {
     
-    if (data){
-      setData({gist_id:gistID, ...testData});
-      setAction("PATCH");
-      console.log("update")
-    } else {
-      createNotepad()
+    if (data.title && data.files){
+      if (gistID) {
+        setData({gist_id:gistID, ...data});
+        setAction("PATCH");
+      }else{
+        createNotepad();
+      }
+    }
+    else{
+      console.log('please fill the forms')
     }
 
   }
   const deleteNotepad = ()=> {
     setAction("DELETE")
-    setData(null);
+    setData(blankData);
     setGistID(null);
   }
 
