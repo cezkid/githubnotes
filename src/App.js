@@ -39,15 +39,15 @@ function App() {
   return (
     <div className="container mx-auto">
 
-      <h1 className="px-3">Notepad Application</h1>
+      <h1 className="p-3">Notepad Application</h1>
 
       <div className="bg-white p-3 border rounded">
-        <div className="flex flex-wrap justify-between align-bottom">
+        <div className="flex flex-wrap justify-between align-bottom py-3">
 
           <NotepadTitle title={title} titleFunc={setTitle}/>
 
-          <div>
-            <div className="flex gap-2">
+          <div className="flex flex-col">
+            <div className="mt-auto flex gap-2">
             <Button onClick={pad.updateNotepad} variant="save">Save</Button>
             <Button onClick={pad.deleteNotepad} variant="delete">Delete</Button>
             </div>
@@ -57,7 +57,8 @@ function App() {
 
         <NoteCreate notes={notes} setNotes={setNotes}/>
 
-        <div>
+        <div className="py-3">
+          <h3 className="sr-only">Added Notes:</h3>
           {
             /**
              * Map notes array to display all notes. Use the NoteRender Component
@@ -66,7 +67,7 @@ function App() {
               (note)=> (
 
                 <NoteRender key={note.id} note={note} notes={notes} setNotes={setNotes}/>
-                
+
               )
             )
           }
