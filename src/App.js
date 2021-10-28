@@ -17,13 +17,19 @@ function App() {
   }
 
   const [title, setTitle] = useState('');
-  const [notes, setNotes] = useState([]);
+  const [notes, setNotes] = useState({});
 
-  const [githubObject, setGithubObject] = useState({description:title, files:notes});
+  const [githubObj, setGithubObj] = useState();
 
+  //combining both states into one
+  useEffect(()=>{
+    setGithubObj({description:title, files:notes})
+  },[title,notes]
+  )
 
+  console.log(githubObj);
 
-  const pad = Notepad(githubObject, setGithubObject, blankData);
+  const pad = Notepad(githubObj, setGithubObj, blankData);
   
 
   return (
@@ -31,7 +37,7 @@ function App() {
       <h1 className="px-3">Notepad Application</h1>
       <div className="bg-white p-3 border rounded">
         <div className="flex flex-wrap justify-between align-bottom">
-          <NotepadTitle titleFunc={setTitle}/>
+          <NotepadTitle title={title} titleFunc={setTitle}/>
           <div>
             <div className="flex gap-2">
             <Button onClick={pad.updateNotepad} variant="save">Save</Button>
