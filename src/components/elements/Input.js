@@ -1,10 +1,11 @@
 //import React, { useState } from "react";
-const Input = ({label, onChange, placeholder})=> {
+const Input = ({value, label, onChange, placeholder})=> {
 
   return(
     <>
     <label>{label}</label>
     <input
+      value={value}
       onChange={onChange}
       placeholder={placeholder}
       maxLength="255"
