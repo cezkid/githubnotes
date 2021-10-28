@@ -2,12 +2,15 @@ import { useState, useEffect } from "react";
 import Input from "./elements/Input";
 import TextArea from "./elements/TextArea";
 
+/**
+ * Note component holds fields for title and note
+ * @returns 
+ */
 const Note = ({title, content, setTitle, setContent})=> {
-      return (
+  return (
     <>
       <Input
         placeholder="Enter note title"
-
         value={title}
         onChange={(e)=>{setTitle(e.target.value)}}
       />
