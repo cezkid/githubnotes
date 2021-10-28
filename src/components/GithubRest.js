@@ -37,7 +37,7 @@ const GithubRest = (method, data, gistID, setGistID)=> {
     body: JSON.stringify(data)
   }
 
-
+  method &&
   fetch(`https://api.github.com/${restPath()}`,requestOptions)
     .then(response => response.json() )
     .then(
