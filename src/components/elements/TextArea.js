@@ -1,10 +1,11 @@
-//import React, { useState } from "react";
-
-const TextArea = ({value, placeholder, onChange, ...props })=> {
+/**
+ * Component returns text area
+ */
+const TextArea = ({value, label, placeholder, onChange, ...props })=> {
   
   return(
     <>
-      <label></label>
+      { label && <label>label</label> }
       <textarea
         value={value}
         placeholder={placeholder}
