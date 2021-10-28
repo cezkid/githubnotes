@@ -1,13 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Button from "./elements/Button";
 import Note from "./Note";
 
+/**
+ * Component return a form to create a note
+ */
 const NoteCreate = ({notes,setNotes})=> {
 
   const [title,setTitle] = useState('')
   const [content,setContent] = useState('')
 
-  //use reduce to get largest id number
+  /**
+   * use reduce on the notes array to get largest id number
+   */
   const lastId =  notes.reduce((max, note) => (Number(note.id) > max ? Number(note.id): max), 0);
 
   return(
